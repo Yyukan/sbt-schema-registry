@@ -1,4 +1,5 @@
 lazy val root = (project in file("."))
+  .enablePlugins(SbtPlugin)
   .settings(
     name := "sbt-schema-registry",
     organization := "net.shtykhno",
@@ -12,5 +13,10 @@ lazy val root = (project in file("."))
     ),
     libraryDependencies ++= Seq(
       "io.confluent" % "kafka-schema-registry-client" % "5.2.1" classifier ""
-    )
+    ),
+    scriptedLaunchOpts := {
+      scriptedLaunchOpts.value ++
+        Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
+    },
+    scriptedBufferLog := false
   )
