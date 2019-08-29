@@ -1,4 +1,4 @@
 language: scala
 scala:
   - 2.12.8
-script: bundle exec scripted test
+script: scripted test
